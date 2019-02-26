@@ -1,0 +1,34 @@
+*.orig
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.idea/
+_ide_helper.php
+.vscode
+
+# Laravel
+/bootstrap/compiled.php
+/vendor
+.env
+.env.testing
+.env.dusk
+
+storage/clockwork
+storage/framework
+storage/logs
+storage/markdown
+storage/app
+storage/debugbar
+
+#npm
+node_modules/*
+package-lock.json
+
+# Homestead
+.vagrant
+Homestead.yaml
+
+composer.lock
+
+.php_cs.cache
+phpcs.xml
