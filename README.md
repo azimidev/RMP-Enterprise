@@ -7,14 +7,15 @@ How you do this is completely down to you. We have only provided the bare bones.
 There is no right or wrong, however we don't want you to rely on a third party csv package, or use the fputcsv function. For testability and maintainability, it is preferrable that your logic is writting in dedicated classes, rather than controllers.
 
 Although this is a relatively small task we believe there is enough here for you to be able to demonstrate your ability to follow good coding practices and show your understanding of PHP and the Laravel framework.
-Our products require features to be backed up by tests (unit and integration) so please provide suitable PHPUnit tests. We use Vue.js for our frontend JS so any enhancements to the UI with Vue would be great to see.
+Our products require features to be backed up by tests (unit and integration) so please provide suitable PHPUnit tests. We use Vue.js for our frontend JS so any enhancements to the UI with Vue would be great to see. The task is written using Laravel 5.4, so be sure to check the older documentation, if you are stuck.
+
 Oh and there may be some 'deliberate' errors in our code, which require fixing... Enjoy.
 
 ### Getting Started
 1) Set up PHP 7, Composer and Sqlite3 or MySQL 5.7.* on your local environment.
 2) `git clone https://github.com/RMPEnterprise/csv-task1.git`
 3) `composer install`
-4) The tast includes a populated sqlite database, but you may prefer to use mySql, in which case you will need to run `php artisan migrate --seed`
+4) The task includes a populated sqlite database, but you may prefer to use mySql, in which case you will need to run `php artisan migrate --seed`
 5) `php artisan serve --port=8003`
 6) Visit `http://127.0.0.1:8003`
 
