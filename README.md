@@ -2,8 +2,10 @@
 ### Overview
 What we have here is an incomplete export system based on a small set of student data.
 The mission, if you choose to accept it, is to fill in the missing parts and finish the application to the *best* of your ability.
+
 How you do this is completely down to you. We have only provided the bare bones.
 There is no right or wrong, however we don't want you to rely on a third party csv package, or use the fputcsv function. For testability and maintainability, it is preferrable that your logic is writting in dedicated classes, rather than controllers.
+
 Although this is a relatively small task we believe there is enough here for you to be able to demonstrate your ability to follow good coding practices and show your understanding of PHP and the Laravel framework.
 Our products require features to be backed up by tests (unit and integration) so please provide suitable PHPUnit tests. We use Vue.js for our frontend JS so any enhancements to the UI with Vue would be great to see.
 Oh and there may be some 'deliberate' errors in our code, which require fixing... Enjoy.
