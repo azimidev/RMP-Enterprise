@@ -1,11 +1,60 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fbf13abc5809fa6ed63d1f60614100a",
+    "content-hash": "ae51af86178eec2f3b6061fb6f52c793",
     "packages": [
+        {
+            "name": "bueltge/marksimple",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bueltge/marksimple.git",
+                "reference": "c5c7b1d811c4f605a7b59eab4de8ce08e93e760c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bueltge/marksimple/zipball/c5c7b1d811c4f605a7b59eab4de8ce08e93e760c",
+                "reference": "c5c7b1d811c4f605a7b59eab4de8ce08e93e760c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "antecedent/patchwork": "^2.1",
+                "codedungeon/phpunit-result-printer": "^0",
+                "dg/composer-cleaner": "^2",
+                "inpsyde/php-coding-standards": "@stable",
+                "phpunit/phpunit": "^6.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bueltge\\Marksimple\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank Bültge",
+                    "email": "frank@bueltge.de"
+                }
+            ],
+            "description": "A simple Markdown parser for PHP.",
+            "keywords": [
+                "markdown",
+                "parser",
+                "php"
+            ],
+            "time": "2018-12-10T21:06:08+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

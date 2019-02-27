@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Student;
 use App\Models\University;
 use Illuminate\Http\Request;
+use Bueltge\Marksimple\Marksimple;
 use Illuminate\Support\Facades\Auth;
 
 class ExportController extends Controller
@@ -18,7 +19,11 @@ class ExportController extends Controller
 
     public function welcome()
     {
-        return view('hello');
+        $ms = new Marksimple();
+
+        return view('hello', [
+            'content' =>  $ms->parseFile('../README.md'),
+        ]);
     }
 
     /**
