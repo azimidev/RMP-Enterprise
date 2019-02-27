@@ -6,29 +6,15 @@
 _ide_helper.php
 .vscode
 
-# Laravel
-/bootstrap/compiled.php
+# composer
 /vendor
-.env
-.env.testing
-.env.dusk
 
-storage/clockwork
-storage/framework
-storage/logs
-storage/markdown
-storage/app
-storage/debugbar
+# laravel
+/storage
 
-#npm
+# npm
 node_modules/*
-package-lock.json
 
 # Homestead
 .vagrant
 Homestead.yaml
-
-composer.lock
-
-.php_cs.cache
-phpcs.xml
