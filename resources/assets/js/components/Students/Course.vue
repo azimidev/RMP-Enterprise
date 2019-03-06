@@ -6,7 +6,7 @@
         <td style=' text-align: left;'>{{student.firstname}}</td>
         <td style=' text-align: left;'>{{student.surname}}</td>
         <td style=' text-align: left;'>{{student.email}}</td>
-        <td style=' text-align: left;'>{{course.university.name}}</td>
+        <td style=' text-align: left;'>{{course.university}}</td>
         <td style=' text-align: left;'>{{course.course_name}}</td>
     </tr>
 </template>

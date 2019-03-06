@@ -16,7 +16,7 @@ class CreateCourseTable extends Migration
         Schema::create('course', function ($table) {
             $table->increments('id')->unsigned();
             $table->text('course_name');
-            $table->unsignedInteger('university_id')->nullable();
+            $table->text('university');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateCourseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course');
+        //
     }
 }

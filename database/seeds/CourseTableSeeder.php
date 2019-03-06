@@ -1,18 +1,14 @@
 <?php
 
-use App\Models\University;
 use Illuminate\Database\Seeder;
+use App\Models\Course;
 
-class UniversitySeeder extends Seeder
+class CourseTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
-        $universities = [
+        $courses = [
             ["course_name" => "Computer Science", "university" => "University of Nairobi"],
             ["course_name" => "Industrial Design", "university" => "Sheffield, University of"],
             ["course_name" => "Digital Forensics", "university" => "Deakin University"],
@@ -266,15 +262,10 @@ class UniversitySeeder extends Seeder
             ["course_name" => "Law And Business Studies", "university" => "Beijing Institute of Technology"],
         ];
 
-        collect($universities)
-            ->transform(function ($item, $key) {
-                return $item["university"];
-            })
-            ->unique()
-            ->flatten()
-            ->each(function ($university, $key) {
-                University::create(["name"=>$university]);
-            });
 
+        foreach ($courses as $course) {
+            Course::create($course);
+        }
     }
+
 }

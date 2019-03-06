@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentAddresses extends Model
+class StudentAddress extends Model
 {
     /**
      * The database table used by the model.
@@ -12,4 +12,11 @@ class StudentAddresses extends Model
      * @var string
      */
     protected $table = 'student_address';
+
+    // public $timestamps = false;
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

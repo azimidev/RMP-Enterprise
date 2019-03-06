@@ -18,7 +18,7 @@
             left: 50%;
             top: 10%;
             margin-left: -390px;
-            margin-top: -100px;
+            margin-top: -50px;
             margin-bottom: 20px;
         }
 
@@ -37,7 +37,7 @@
 <body>
 <div class="instructions">
 
-    <img src="/images/logo.png" alt="Logo" title="logo">
+    <img src="/images/logo.png" alt="Logo" title="logo" width="100%">
 
     {!! $content !!}
 

@@ -31,6 +31,6 @@ class CreateStudentAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_address');
+        //
     }
 }

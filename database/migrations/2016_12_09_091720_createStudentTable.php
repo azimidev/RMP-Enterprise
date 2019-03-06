@@ -19,7 +19,8 @@ class CreateStudentTable extends Migration
             $table->text('surname');
             $table->text('email');
             $table->text('nationality');
-            $table->unsignedInteger('address_id')->nullable();
+            $table->integer('address_id');
+            $table->integer('course_id');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateStudentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student');
+        //
     }
 }

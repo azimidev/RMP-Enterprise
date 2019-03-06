@@ -18,14 +18,6 @@ class Course extends Model
      */
     public function students()
     {
-        return $this->belongsToMany(Student::class)->withTimestamps();
-    }
-
-    /**
-     * Get the University for this Course
-     */
-    public function university()
-    {
-        return $this->belongsTo(University::class);
+        return $this->hasMany(Student::class);
     }
 }
