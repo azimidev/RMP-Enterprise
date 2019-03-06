@@ -13,9 +13,9 @@ Oh and there may be some 'deliberate' errors in our code, which require fixing..
 
 ### Getting Started
 1) Set up PHP 7, Composer and Sqlite3 or MySQL 5.7.* on your local environment.
-2) `git clone https://github.com/RMPEnterprise/csv-task1.git`
+2) `git clone https://github.com/RMPEnterprise/php-developer-task.git`
 3) `composer install`
-4) The task includes a populated sqlite database, but you may prefer to use mySql, in which case you will need to run `php artisan migrate --seed`
+4) The task includes a populated sqlite database, but you may prefer to use mySql, in which case you will need to change .env and run `php artisan migrate --seed`
 5) `php artisan serve --port=8003`
 6) Visit `http://127.0.0.1:8003`
 
