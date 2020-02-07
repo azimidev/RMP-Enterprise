@@ -1,44 +1,44 @@
 <template>
-    <div>
+	<div>
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Forename</th>
-                    <th>Surname</th>
-                    <th>Email</th>
-                    <th>University</th>
-                    <th>Course</th>
-                </tr>
-            </thead>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Forename</th>
+					<th>Surname</th>
+					<th>Email</th>
+					<th>University</th>
+					<th>Course</th>
+				</tr>
+			</thead>
 
-            <student
-                    v-if="students.length > 1"
-                    v-for="student in students"
-                    v-bind:student="student"
-                    v-bind:selected="selected"
-            >
-            </student>
+			<student
+				v-bind:selected="selected"
+				v-bind:student="student"
+				v-for="student in students"
+				v-if="students.length > 1"
+			>
+			</student>
 
-            <tr v-if="students.length < 1">
-                <td colspan="6" style="text-align: center">Oh dear, no data found.</td>
-            </tr>
+			<tr v-if="students.length < 1">
+				<td colspan="6" style="text-align: center">Oh dear, no data found.</td>
+			</tr>
 
-        </table>
+		</table>
 
-    </div>
+	</div>
 </template>
 
 <script>
 
-    import StudentComponent from './Student.vue';
+	import StudentComponent from './Student.vue';
 
-    export default{
-        props: ['students','selected'],
-        components:{
-            'student':StudentComponent,
-        }
-    }
+	export default {
+		props: ['students', 'selected'],
+		components: {
+			'student': StudentComponent,
+		},
+	};
 
 </script>

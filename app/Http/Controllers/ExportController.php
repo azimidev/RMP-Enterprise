@@ -36,9 +36,11 @@ class ExportController extends Controller
         return view('view_students', compact(['students']));
     }
 
-    /**
-     * Exports selected students data to a CSV file
-     */
+	/**
+	 * Exports selected students data to a CSV file
+	 *
+	 * @param \App\Http\Requests\ExportSelected $request
+	 */
     public function export(ExportSelected $request)
     {
         //
