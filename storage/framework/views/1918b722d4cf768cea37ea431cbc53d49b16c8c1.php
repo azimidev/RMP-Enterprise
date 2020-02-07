@@ -1,16 +1,16 @@
-@extends('layout.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 	<form action="/export" method="post" id="student_form">
-		{{ csrf_field() }}
+		<?php echo e(csrf_field()); ?>
+
 
 		<div class="header">
 			<div><img src="/images/logo.png" alt="RMP Logo" title="RMP logo" width="100%"></div>
-			@if (session('alert'))
+			<?php if(session('alert')): ?>
 				<div class="alert alert-warning">
-					{{ session('alert') }}
+					<?php echo e(session('alert')); ?>
+
 				</div>
-			@endif
+			<?php endif; ?>
 			<div style='margin: 10px; text-align: left'>
 				<input type="button" value="Select All" id="select_all"/>
 				<input type="submit" value="Export" id="submit"/>
@@ -28,28 +28,28 @@
 					<th>Course</th>
 				</tr>
 
-				@if(count($students) > 0 )
-					@foreach($students as $student)
+				<?php if(count($students) > 0 ): ?>
+					<?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 						<tr>
-							<td><input type="checkbox" class="checkbox" name="studentId[]" value="{{ $student->id }}"></td>
-							<td>{{ $student->firstname }}</td>
-							<td>{{ $student->surname }}</td>
-							<td>{{ $student->email }}</td>
-							<td>{{ isset($student->course->university) ? $student->course->university : 'N/A' }}</td>
-							<td>{{ isset($student->course->course_name) ? $student->course->course_name : 'N/A' }}</td>
+							<td><input type="checkbox" class="checkbox" name="studentId[]" value="<?php echo e($student->id); ?>"></td>
+							<td><?php echo e($student->firstname); ?></td>
+							<td><?php echo e($student->surname); ?></td>
+							<td><?php echo e($student->email); ?></td>
+							<td><?php echo e(isset($student->course->university) ? $student->course->university : 'N/A'); ?></td>
+							<td><?php echo e(isset($student->course->course_name) ? $student->course->course_name : 'N/A'); ?></td>
 						</tr>
-					@endforeach
-				@else
+					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+				<?php else: ?>
 					<tr>
 						<td colspan="6" style="text-align: center">Oh dear, no data found.</td>
 					</tr>
-				@endif
+				<?php endif; ?>
 			</table>
 		</div>
 	</form>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push ('scripts')
+<?php $__env->startPush('scripts'); ?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
 		$(document).ready(function () {
@@ -83,5 +83,7 @@
 
 		});
 	</script>
-@endpush
+<?php $__env->stopPush(); ?>
 
+
+<?php echo $__env->make('layout.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
