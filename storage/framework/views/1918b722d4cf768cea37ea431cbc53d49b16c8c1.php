@@ -1,16 +1,13 @@
 <?php $__env->startSection('content'); ?>
-	<form action="/export" method="post" id="student_form">
+	<form action="<?php echo e(route('export')); ?>" method="post" id="student_form">
 		<?php echo e(csrf_field()); ?>
 
 
 		<div class="header">
-			<div><img src="/images/logo.png" alt="RMP Logo" title="RMP logo" width="100%"></div>
-			<?php if(session('alert')): ?>
-				<div class="alert alert-warning">
-					<?php echo e(session('alert')); ?>
-
-				</div>
-			<?php endif; ?>
+			<div>
+				<img src="/images/logo.png" alt="RMP Logo" title="RMP logo" width="100%">
+			</div>
+			<?php echo $__env->make('partials._alert', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 			<div style='margin: 10px; text-align: left'>
 				<input type="button" value="Select All" id="select_all"/>
 				<input type="submit" value="Export" id="submit"/>
@@ -55,8 +52,9 @@
 		$(document).ready(function () {
 
 			var allChecked = false;
+			var selectAll = $('#select_all');
 
-			$('#select_all').click(function (event) {
+			selectAll.click(function (event) {
 				event.preventDefault();
 				allChecked = ! allChecked;
 				$('.checkbox').prop('checked', allChecked);
@@ -64,10 +62,10 @@
 			});
 
 			$('.checkbox').change(function () {
-				if (false == $(this).prop('checked')) {
+				if (false === $(this).prop('checked')) {
 					allChecked = false;
 				}
-				if ($('.checkbox:checked').length == $('.checkbox').length) {
+				if ($('.checkbox:checked').length === $('.checkbox').length) {
 					allChecked = true;
 				}
 				setSelectAllLabel(allChecked);
@@ -75,9 +73,9 @@
 
 			function setSelectAllLabel(allChecked) {
 				if (allChecked) {
-					$('#select_all').prop('value', 'Unselect All');
+					selectAll.prop('value', 'Unselect All');
 				} else {
-					$('#select_all').prop('value', 'Select All');
+					selectAll.prop('value', 'Select All');
 				}
 			}
 

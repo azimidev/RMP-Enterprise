@@ -3,9 +3,7 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-
 	<students></students>
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('json'); ?>
