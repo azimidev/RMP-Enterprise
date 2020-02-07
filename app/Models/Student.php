@@ -6,6 +6,14 @@ use App\Models\Course;
 use App\Models\StudentAddresses;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Student
+ *
+ * @property-read \App\Models\StudentAddress $address
+ * @property-read \App\Models\Course $course
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Course[] $courses
+ * @mixin \Eloquent
+ */
 class Student extends Model
 {
     /**
