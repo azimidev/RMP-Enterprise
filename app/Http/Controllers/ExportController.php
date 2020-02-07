@@ -33,7 +33,9 @@ class ExportController extends Controller
     {
         $students = Student::with('course')->get();
 
-        return view('view_students', compact(['students']));
+        // dd($students->first()->course->university);
+
+        return view('view_students', compact('students'));
     }
 
 	/**
