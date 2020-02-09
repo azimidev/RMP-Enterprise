@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Csv;
+use App\Models\Course;
 use App\Models\Student;
 use Bueltge\Marksimple\Marksimple;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,11 @@ class ExportController extends Controller
 	{
 		$students = Student::with('course')->findOrFail($request->studentId)->all();
 
+		// I created a class called Csv to generate a csv file and download it
+		// this class gets all the data as a first parameter
+		// the second parameter is the name of the file
+		// and then automatically get the attributes of the model
+		// and exports (downloads the file)
 		return (new Csv($students, 'students'))->make();
 	}
 
@@ -53,7 +59,16 @@ class ExportController extends Controller
 	 */
 	public function exportCourseAttendenceToCSV()
 	{
-		//
+		$courses = Course::withCount('students')->get();
+
+		// It wasn't mentioned where should I use this function
+		// but according to your comment above tou want
+		// number of students for each course
+
+		// this will export all courses and their fields
+		// the last number after timestamps in csv file is
+		// number of students for rach course
+		return (new Csv($courses, 'students'))->make();
 	}
 
 	/** Optional **/

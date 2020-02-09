@@ -54,9 +54,8 @@ class Csv
 
 		foreach ($this->records as $record) {
 			foreach ($attributes as $value) {
-				$seperator = (end($attributes) !== $value) ? ', ' : '';
 				if ($record->$value) {
-					$content .= '"' . $record->$value . '"' . $seperator;
+					$content .= '"' . $record->$value . '"' . ', ';
 				}
 			}
 			$content .= PHP_EOL;
