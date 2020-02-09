@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Course;
+use App\Http\Csv;
 use App\Models\Student;
-use Illuminate\Http\Request;
 use Bueltge\Marksimple\Marksimple;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ExportSelected;
@@ -31,40 +30,33 @@ class ExportController extends Controller
      */
     public function viewStudents()
     {
-        $students = Student::with('course')->get();
+	    $students = Student::with('course')->get();
 
-        // dd($students->first()->course->university);
-
-        return view('view_students', compact('students'));
+	    return view('view_students', compact('students'));
     }
 
 	/**
 	 * Exports selected students data to a CSV file
 	 *
 	 * @param \App\Http\Requests\ExportSelected $request
+	 * @return \Illuminate\Http\Response|mixed
 	 */
-    public function export(ExportSelected $request)
-    {
-        //
-    }
+	public function export(ExportSelected $request)
+	{
+		$students = Student::with('course')->findOrFail($request->studentId)->all();
 
-    /**
-     * Exports all student data to a CSV file
-     */
-    public function exportStudentsToCSV()
-    {
-        //
-    }
+		return (new Csv($students, 'students'))->make();
+	}
 
-    /**
-     * Exports the total number of students that are taking each course to a CSV file
-     */
-    public function exportCourseAttendenceToCSV()
-    {
-        //
-    }
+	/**
+	 * Exports the total number of students that are taking each course to a CSV file
+	 */
+	public function exportCourseAttendenceToCSV()
+	{
+		//
+	}
 
-    /** Optional **/
+	/** Optional **/
 
     /**
      * View all students found in the database

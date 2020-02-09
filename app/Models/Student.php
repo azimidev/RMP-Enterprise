@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\StudentAddresses;
 use Illuminate\Database\Eloquent\Model;
 
 /**
