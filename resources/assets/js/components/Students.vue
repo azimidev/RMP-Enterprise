@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<h3>Seach here</h3>
-		<div class="row">
+		<header-component :selected="selected"/>
+		<div class="row" style="margin-top: 10px;">
 			<div class="col-md-6 col-md-offset-3">
 				<input placeholder="Search student name, surname or email..."
 				       type="search"
@@ -9,7 +9,6 @@
 				       v-model="search"/>
 			</div>
 		</div>
-		<header-component :selected="selected"/>
 		<table-component :selected="selected" :students="filteredStudent"/>
 	</div>
 </template>

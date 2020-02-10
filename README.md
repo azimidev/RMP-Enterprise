@@ -1,3 +1,24 @@
+# Description
+
+- I have done the tasks including selecting the students and export them to csv without third party package or futcsv function.
+- I also have done the optional Vue part.
+- I updated the packages including Lravel-Mix since the old one wasn't compatible with my version of Yarn.
+- I wrote unit tests and some feature tests.
+- I created the search functionality for both Vue and Laravel.
+- I fixed all deliberate errors or bugs.
+- **For exporting the course attendence I assume you wanted to see number of students attending to every course for all parts**. Therefore When user clicks on Export Course Attendance there will be a CSV file with all courses details and the last column will be the number of students attending to each course.
+- Route `View` didn't have _Export Course Attendance_ button which I added it along with another route called `export.course.attendance` to implement exporting the course attendance functionality.
+- There are some comments along side with code to explain what I did.
+
+## What I could have done differently
+
+- I would extract the Vue search into component
+- Write more tests
+- Optimize the sass files
+- Please note I am aware that `exportCourseAttendenceToCSV` and `exportCourseAttendenceToCsvWithVue` are similar and they can definitely be refactored into one method and only one route because `Csv` object it returns similar response in both case of AJAX call or without AJAX call.
+
+---
+
 # Welcome to the RMP Enterprise Developer Task - CSV Export
 ### Overview
 What we have here is an incomplete export system based on a small set of student data.

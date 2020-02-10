@@ -1925,7 +1925,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2199,12 +2198,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Student_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Student.vue */ "./resources/assets/js/components/students/Student.vue");
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -19844,9 +19837,9 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h3", [_vm._v("Perform a seach here")]),
+      _c("header-component", { attrs: { selected: _vm.selected } }),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "row", staticStyle: { "margin-top": "10px" } }, [
         _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
           _c("input", {
             directives: [
@@ -19874,8 +19867,6 @@ var render = function() {
           })
         ])
       ]),
-      _vm._v(" "),
-      _c("header-component", { attrs: { selected: _vm.selected } }),
       _vm._v(" "),
       _c("table-component", {
         attrs: { selected: _vm.selected, students: _vm.filteredStudent }
@@ -19996,6 +19987,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticStyle: { margin: "10px", "text-align": "left" } }, [
       _c("input", {
+        class: ["btn", _vm.selectAll ? "btn-success" : "btn-danger"],
         attrs: { value: _vm.selectText, type: "button" },
         on: {
           click: function($event) {
@@ -20005,6 +19997,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("input", {
+        staticClass: "btn btn-primary",
         attrs: { type: "button", value: "Export Students" },
         on: {
           click: function($event) {
@@ -20014,6 +20007,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("input", {
+        staticClass: "btn btn-info",
         attrs: { type: "button", value: "Export Course Attendance" },
         on: {
           click: function($event) {

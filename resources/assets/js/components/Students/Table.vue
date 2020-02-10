@@ -1,6 +1,5 @@
 <template>
 	<div>
-
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -12,7 +11,6 @@
 					<th>Course</th>
 				</tr>
 			</thead>
-
 			<student
 				:selected="selected"
 				:student="student"
@@ -21,16 +19,12 @@
 				:key="student.id"
 			>
 			</student>
-
 			<tr v-if="students.length < 1">
 				<td colspan="6" style="text-align: center">Oh dear, no data found.</td>
 			</tr>
-
 		</table>
-
 	</div>
 </template>
-
 <script>
 
 	import StudentComponent from './Student.vue';
@@ -41,5 +35,4 @@
 			'student': StudentComponent,
 		},
 	};
-
 </script>

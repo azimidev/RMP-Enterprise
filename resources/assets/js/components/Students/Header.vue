@@ -2,9 +2,9 @@
 	<div class="header">
 		<div><img alt="Logo" src="/images/logo_sm.jpg" title="logo"></div>
 		<div style='margin: 10px;  text-align: left'>
-			<input :value="selectText" @click="toggleSelection()" type="button"/>
-			<input @click="exportStudents()" type="button" value="Export Students"/>
-			<input @click="exportCourseAttendance()" type="button" value="Export Course Attendance"/>
+			<input :value="selectText" @click="toggleSelection()" :class="['btn', selectAll ? 'btn-success' : 'btn-danger']" type="button"/>
+			<input @click="exportStudents()" type="button" class="btn btn-primary" value="Export Students"/>
+			<input @click="exportCourseAttendance()" class="btn btn-info" type="button" value="Export Course Attendance"/>
 		</div>
 	</div>
 </template>
