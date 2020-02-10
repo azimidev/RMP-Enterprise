@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-
 	<meta charset="UTF-8">
 	<title>Welcome to the task</title>
 	<link rel="stylesheet"
@@ -60,37 +59,26 @@
 			margin: 16px 0 0 0;
 		}
 	</style>
-
 	<link rel="stylesheet" href="{{ 'css/app.css' }}">
-
 	@stack('styles')
-
 	<script>
 		window.Laravel = <?php echo json_encode([
 			'csrfToken' => csrf_token(),
 			'api_token' => Auth::user()->api_token
 		]); ?>
 	</script>
-
 </head>
-
 <body>
-
 	<div class="container" id="app">
 		@yield('content')
 	</div>
-
 	<footer class="footer">
 		<div class="container">
 			<p class="text-muted">Code Test</p>
 		</div>
 	</footer>
-
 	@stack('json')
-
 	<script src="{{ 'js/app.js' }}"></script>
-
 	@stack('scripts')
-
 </body>
 </html>

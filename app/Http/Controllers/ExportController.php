@@ -62,13 +62,13 @@ class ExportController extends Controller
 		$courses = Course::withCount('students')->get();
 
 		// It wasn't mentioned where should I use this function
-		// but according to your comment above tou want
-		// number of students for each course
+		// but according to your comment above you want
+		// number of students for all course
 
-		// this will export all courses and their fields
-		// the last number after timestamps in csv file is
-		// number of students for rach course
-		return (new Csv($courses, 'students'))->make();
+		// this will export all courses and their fields.
+		// The last number after timestamps in csv file is
+		// number of students for each course
+		return (new Csv($courses, 'courses'))->make();
 	}
 
 	/** Optional **/
@@ -88,7 +88,9 @@ class ExportController extends Controller
      */
     public function exportStudentsToCsvWithVue()
     {
-        //
+	    $students = Student::with('course')->findOrFail(request('students'))->all();
+
+	    return (new Csv($students, 'students'))->make();
     }
 
     /**
@@ -96,6 +98,15 @@ class ExportController extends Controller
      */
     public function exportCourseAttendenceToCsvWithVue()
     {
-        //
+	    $courses = Course::withCount('students')->get();
+
+	    // According to your comment above you want
+	    // number of students for all course
+
+	    // this will export all courses and their fields
+	    // the last number after timestamps in csv file is
+	    // number of students for each course
+	    // assune the ones with no number is 0
+	    return (new Csv($courses, 'courses'))->make();
     }
 }

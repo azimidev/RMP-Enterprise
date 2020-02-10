@@ -22,21 +22,17 @@
 		},
 		mounted() {
 
-			var selected = this.selected;
-
-			eventBus.$on('selectedStudent', function (data) {
+			eventBus.$on('selectedStudent', (data) => {
 				if (data.status) {
-					selected.push(data.id);
+					this.selected.push(data.id);
 				} else {
-					_.remove(selected, function (n) {
-						return n === data.id;
-					});
+					_.remove(this.selected, n => n === data.id);
 				}
 
 			});
 		},
 		methods: {
-			selectedStudent: function (student) {
+			selectedStudent(student) {
 				this.selected.push(student);
 			},
 		},

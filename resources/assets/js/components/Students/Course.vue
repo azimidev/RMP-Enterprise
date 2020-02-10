@@ -1,13 +1,13 @@
 <template>
     <tr>
         <td>
-            <input type="checkbox" v-model="picked" v-on:click="select(student)">
+            <input type="checkbox" v-model="picked" @click="select(student)">
         </td>
-        <td style=' text-align: left;'>{{student.firstname}}</td>
-        <td style=' text-align: left;'>{{student.surname}}</td>
-        <td style=' text-align: left;'>{{student.email}}</td>
-        <td style=' text-align: left;'>{{course.university}}</td>
-        <td style=' text-align: left;'>{{course.course_name}}</td>
+        <td style='text-align: left;'>{{student.firstname}}</td>
+        <td style='text-align: left;'>{{student.surname}}</td>
+        <td style='text-align: left;'>{{student.email}}</td>
+        <td style='text-align: left;'>{{course.university}}</td>
+        <td style='text-align: left;'>{{course.course_name}}</td>
     </tr>
 </template>
 

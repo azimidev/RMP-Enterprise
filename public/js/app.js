@@ -1931,12 +1931,13 @@ __webpack_require__.r(__webpack_exports__);
     'table-component': _components_students_Table_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    var selected = this.selected;
+    var _this = this;
+
     eventBus.$on('selectedStudent', function (data) {
       if (data.status) {
-        selected.push(data.id);
+        _this.selected.push(data.id);
       } else {
-        _.remove(selected, function (n) {
+        _.remove(_this.selected, function (n) {
           return n === data.id;
         });
       }
@@ -2022,11 +2023,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['selected'],
   data: function data() {
@@ -2041,7 +2037,7 @@ __webpack_require__.r(__webpack_exports__);
       this.selectAll = !this.selectAll;
     },
     exportStudents: function exportStudents() {
-      var vue = this;
+      var _this = this;
 
       if (this.selected.length > 0) {
         swal({
@@ -2054,13 +2050,23 @@ __webpack_require__.r(__webpack_exports__);
           cancelButtonText: 'No',
           confirmButtonText: 'Yes'
         }, function () {
-          var data = {
-            students: vue.selected,
-            all: false
-          };
-          vue.$http.post('./api/export/students', data).then(function (response) {
+          axios.post('/api/export/students', {
+            students: _this.selected,
+            all: false,
+            api_token: Laravel.api_token // --> we need to pass this as you use auth:api
+
+          }).then(function (_ref) {
+            var data = _ref.data;
+
+            // NOTE: here we're get a response from Csv object in the server
+            //  because response will return a csv string and because
+            //  it's asyn response, i created a methid called save
+            //  that will download the response into a csv blob
+            //  it gets the data which is returned from the server
+            //  and file name as string and it will try to save it
+            _this.save(data, 'students.csv');
+
             swal.close();
-            window.location = response.body.file;
           }, function (response) {
             sweetAlert('Oops...', 'We are terribly sorry, but there it was an error downloading your selection, please try again', 'error');
           });
@@ -2070,7 +2076,8 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     exportCourseAttendance: function exportCourseAttendance() {
-      var vue = this;
+      var _this2 = this;
+
       swal({
         title: 'Export course attendance',
         text: 'Are you sure you want to download the current selection?',
@@ -2081,13 +2088,31 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: 'No',
         confirmButtonText: 'Yes'
       }, function () {
-        vue.$http.post('./api/export/course-attendance').then(function (response) {
+        axios.post('/api/export/course-attendance', {
+          api_token: Laravel.api_token
+        }).then(function (_ref2) {
+          var data = _ref2.data;
+
+          _this2.save(data, 'courses.csv');
+
           swal.close();
-          window.location = response.body.file;
         }, function (response) {
           sweetAlert('Oops...', 'We are terribly sorry, but there it was an error downloading your selection, please try again', 'error');
         });
       });
+    },
+    save: function save(data, fileName) {
+      var a = document.createElement('a');
+      document.body.appendChild(a);
+      a.style = 'display: none';
+      var blob = new Blob([data], {
+        type: 'octet/stream'
+      }),
+          url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
     }
   },
   computed: {
@@ -2109,6 +2134,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Course_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Course.vue */ "./resources/assets/js/components/students/Course.vue");
+//
 //
 //
 //
@@ -19902,38 +19928,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "header" }, [
-      _vm._m(0),
+  return _c("div", { staticClass: "header" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticStyle: { margin: "10px", "text-align": "left" } }, [
+      _c("input", {
+        attrs: { value: _vm.selectText, type: "button" },
+        on: {
+          click: function($event) {
+            return _vm.toggleSelection()
+          }
+        }
+      }),
       _vm._v(" "),
-      _c("div", { staticStyle: { margin: "10px", "text-align": "left" } }, [
-        _c("input", {
-          attrs: { type: "button", value: _vm.selectText },
-          on: {
-            click: function($event) {
-              return _vm.toggleSelection()
-            }
+      _c("input", {
+        attrs: { type: "button", value: "Export Students" },
+        on: {
+          click: function($event) {
+            return _vm.exportStudents()
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", value: "Export Students" },
-          on: {
-            click: function($event) {
-              return _vm.exportStudents()
-            }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "button", value: "Export Course Attendance" },
+        on: {
+          click: function($event) {
+            return _vm.exportCourseAttendance()
           }
-        }),
-        _vm._v(" "),
-        _c("input", {
-          attrs: { type: "button", value: "Export Course Attendance" },
-          on: {
-            click: function($event) {
-              return _vm.exportCourseAttendance()
-            }
-          }
-        })
-      ])
+        }
+      })
     ])
   ])
 }

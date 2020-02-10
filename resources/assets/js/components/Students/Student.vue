@@ -1,5 +1,6 @@
 <template>
 	<tbody>
+		<!--:selected="selected"-->
 		<course
 			:course="course"
 			:key="course.id"
