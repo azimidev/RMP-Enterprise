@@ -24,7 +24,7 @@ class Csv
 	 *
 	 * @return array
 	 */
-	protected function getAttributes()
+	public function getAttributes()
 	{
 		return array_keys($this->records[0]->getAttributes());
 	}
@@ -34,7 +34,7 @@ class Csv
 	 *
 	 * @return string[]
 	 */
-	protected function headers()
+	public function headers()
 	{
 		return [
 			'Content-type'        => 'text/csv',

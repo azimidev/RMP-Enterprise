@@ -14,21 +14,27 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Student extends Model
 {
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'student';
+	/**
+	 * The database table used by the model.
+	 *
+	 * @var string
+	 */
+	protected $table    = 'student';
+	protected $fillable = [
+		'firstname',
+		'surname',
+		'email',
+		'nationality',
+		'address_id',
+		'course_id',
+	];
+	public $timestamps = false;
+	protected $hidden = ['address_id', 'created_at', 'updated_at'];
 
-    public $timestamps = false;
-
-    protected $hidden = ['address_id', 'created_at', 'updated_at'];
-
-    public function course()
-    {
-        return $this->belongsTo(Course::class);
-    }
+	public function course()
+	{
+		return $this->belongsTo(Course::class);
+	}
 
     public function courses()
     {

@@ -10,7 +10,7 @@ Vue.component('students', Students);
 
 window.eventBus = new Vue();
 
-app = new Vue({
+window.app = new Vue({
 	el: '#app',
 });
 
