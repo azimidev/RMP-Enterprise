@@ -34,17 +34,18 @@
 						cancelButtonText: 'No',
 						confirmButtonText: 'Yes',
 					}, () => {
+						// use Axios instead of redundant Vue resources package
 						axios.post('/api/export/students', {
 							students: this.selected,
 							all: false,
 							api_token: Laravel.api_token, // --> we need to pass this as you use auth:api
 						}).then(({ data }) => {
-							// NOTE: here we're get a response from Csv object in the server
-							//  because response will return a csv string and because
-							//  it's asyn response, i created a methid called save
-							//  that will download the response into a csv blob
-							//  it gets the data which is returned from the server
-							//  and file name as string and it will try to save it
+							// here we're get a response from Csv object in the server
+							// because response will return a csv string and because
+							// it's asyn response, i created a methid called save
+							// that will download the response into a csv blob
+							// it gets the data which is returned from the server
+							// and file name as string and it will try to save it
 							this.save(data, 'students.csv');
 							swal.close();
 						}, (response) => {
@@ -67,6 +68,7 @@
 					cancelButtonText: 'No',
 					confirmButtonText: 'Yes',
 				}, () => {
+					// use Axios instead of redundant Vue resources package
 					axios.post('/api/export/course-attendance', { api_token: Laravel.api_token })
 					     .then(({ data }) => {
 						     this.save(data, 'courses.csv');
@@ -76,15 +78,28 @@
 					     });
 				});
 			},
+			/**
+			 * Saves the response into a file.
+			 *
+			 * @param data
+			 * @param fileName
+			 */
 			save(data, fileName) {
+				// create an actual link to mock a download link
 				const a = document.createElement('a');
+				// append to the body
 				document.body.appendChild(a);
+				// hide it
 				a.style    = 'display: none';
-				const blob = new Blob([data], { type: 'octet/stream' }),
-				      url  = window.URL.createObjectURL(blob);
+				// create a new Blob with the specified type
+				const blob = new Blob([data], { type: 'octet/stream' });
+				// create a URL from the blob
+				const url  = window.URL.createObjectURL(blob);
+				// assign href to the URL and click on it
 				a.href     = url;
 				a.download = fileName;
 				a.click();
+				// revoke object url after downloading it
 				window.URL.revokeObjectURL(url);
 			},
 		},
