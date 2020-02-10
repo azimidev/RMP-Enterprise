@@ -1,6 +1,5 @@
 <template>
 	<tbody>
-		<!--:selected="selected"-->
 		<course
 			:course="course"
 			:key="course.id"
@@ -10,9 +9,7 @@
 		</course>
 	</tbody>
 </template>
-
 <script>
-
 	import CourseComponent from './Course.vue';
 
 	export default {

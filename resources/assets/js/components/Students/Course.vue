@@ -10,9 +10,7 @@
         <td style='text-align: left;'>{{course.course_name}}</td>
     </tr>
 </template>
-
 <script>
-
     export default {
         props: ['student', 'course'],
         data() {
@@ -21,7 +19,6 @@
             };
         },
         mounted() {
-
             eventBus.$on('toggleSelection', value => {
                 this.picked = value;
                 eventBus.$emit('selectedStudent', {

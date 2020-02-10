@@ -21,14 +21,12 @@
 			'table-component': TableComponent,
 		},
 		mounted() {
-
-			eventBus.$on('selectedStudent', (data) => {
-				if (data.status) {
+			eventBus.$on('selectedStudent', data => {
+				if ( ! data.status) {
 					this.selected.push(data.id);
 				} else {
 					_.remove(this.selected, n => n === data.id);
 				}
-
 			});
 		},
 		methods: {

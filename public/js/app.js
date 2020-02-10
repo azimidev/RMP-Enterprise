@@ -1934,13 +1934,17 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     eventBus.$on('selectedStudent', function (data) {
-      if (data.status) {
+      console.log(data);
+
+      if (!data.status) {
         _this.selected.push(data.id);
       } else {
         _.remove(_this.selected, function (n) {
           return n === data.id;
         });
       }
+
+      console.log(_this.selected);
     });
   },
   methods: {
@@ -1961,7 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2050,6 +2053,7 @@ __webpack_require__.r(__webpack_exports__);
           cancelButtonText: 'No',
           confirmButtonText: 'Yes'
         }, function () {
+          // use Axios instead of redundant Vue resources package
           axios.post('/api/export/students', {
             students: _this.selected,
             all: false,
@@ -2058,12 +2062,12 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function (_ref) {
             var data = _ref.data;
 
-            // NOTE: here we're get a response from Csv object in the server
-            //  because response will return a csv string and because
-            //  it's asyn response, i created a methid called save
-            //  that will download the response into a csv blob
-            //  it gets the data which is returned from the server
-            //  and file name as string and it will try to save it
+            // here we're get a response from Csv object in the server
+            // because response will return a csv string and because
+            // it's asyn response, i created a methid called save
+            // that will download the response into a csv blob
+            // it gets the data which is returned from the server
+            // and file name as string and it will try to save it
             _this.save(data, 'students.csv');
 
             swal.close();
@@ -2088,6 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
         cancelButtonText: 'No',
         confirmButtonText: 'Yes'
       }, function () {
+        // use Axios instead of redundant Vue resources package
         axios.post('/api/export/course-attendance', {
           api_token: Laravel.api_token
         }).then(function (_ref2) {
@@ -2101,17 +2106,31 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+
+    /**
+     * Saves the response into a file.
+     *
+     * @param data
+     * @param fileName
+     */
     save: function save(data, fileName) {
-      var a = document.createElement('a');
-      document.body.appendChild(a);
-      a.style = 'display: none';
+      // create an actual link to mock a download link
+      var a = document.createElement('a'); // append to the body
+
+      document.body.appendChild(a); // hide it
+
+      a.style = 'display: none'; // create a new Blob with the specified type
+
       var blob = new Blob([data], {
         type: 'octet/stream'
-      }),
-          url = window.URL.createObjectURL(blob);
+      }); // create a URL from the blob
+
+      var url = window.URL.createObjectURL(blob); // assign href to the URL and click on it
+
       a.href = url;
       a.download = fileName;
-      a.click();
+      a.click(); // revoke object url after downloading it
+
       window.URL.revokeObjectURL(url);
     }
   },
@@ -2134,8 +2153,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Course_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Course.vue */ "./resources/assets/js/components/students/Course.vue");
-//
-//
 //
 //
 //
