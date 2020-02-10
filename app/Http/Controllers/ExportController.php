@@ -80,7 +80,7 @@ class ExportController extends Controller
     {
         $students = Student::with('courses')->get();
 
-        return view('view_students_vue', compact(['students']));
+        return view('view_students_vue', compact('students'));
     }
 
     /**

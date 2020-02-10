@@ -14,7 +14,7 @@
 <script>
 
     export default {
-        props: ['student', 'course', 'selected'],
+        props: ['student', 'course'],
         data() {
             return {
                 picked: false,
@@ -22,18 +22,16 @@
         },
         mounted() {
 
-            var vue = this;
-
-            eventBus.$on('toggleSelection', function (value) {
-                vue.picked = value;
+            eventBus.$on('toggleSelection', value => {
+                this.picked = value;
                 eventBus.$emit('selectedStudent', {
-                    id: vue.student.id,
+                    id: this.student.id,
                     status: value,
                 });
             });
         },
         methods: {
-            select: function (student) {
+            select(student) {
                 eventBus.$emit('selectedStudent', {
                     id: student.id,
                     status: this.picked,

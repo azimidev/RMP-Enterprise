@@ -1,10 +1,10 @@
 <template>
 	<tbody>
 		<course
-			v-bind:course="course"
-			v-bind:selected="selected"
-			v-bind:student="student"
+			:course="course"
+			:key="course.id"
 			v-for="course in student.courses"
+			:student="student"
 		>
 		</course>
 	</tbody>

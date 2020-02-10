@@ -1,20 +1,14 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+window._ = require('lodash');
+window.Vue   = require('vue');
+window.axios = require('axios');
 
-require('./bootstrap');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
+import Students from './components/Students.vue';
 
-Vue.component('students', require('./components/Students.vue'));
+Vue.component('students', Students);
 
-eventBus = new Vue();
+window.eventBus = new Vue();
 
 app = new Vue({
 	el: '#app',

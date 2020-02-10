@@ -14,10 +14,11 @@
 			</thead>
 
 			<student
-				v-bind:selected="selected"
-				v-bind:student="student"
+				:selected="selected"
+				:student="student"
 				v-for="student in students"
 				v-if="students.length > 1"
+				:key="student.id"
 			>
 			</student>
 

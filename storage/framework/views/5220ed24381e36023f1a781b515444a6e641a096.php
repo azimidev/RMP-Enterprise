@@ -7,7 +7,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('json'); ?>
-	<script type="text/javascript">
+	<script>
 		var students = <?php echo $students->toJson(); ?>;
 	</script>
 <?php $__env->stopPush(); ?>

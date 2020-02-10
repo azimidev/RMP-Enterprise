@@ -9,7 +9,7 @@
 @endsection
 
 @push('json')
-	<script type="text/javascript">
+	<script>
 		var students = {!! $students->toJson() !!};
 	</script>
 @endpush
