@@ -31,7 +31,17 @@ class ExportController extends Controller
      */
     public function viewStudents()
     {
-	    $students = Student::with('course')->get();
+	    if ($query = request('q')) {
+		    // if request has a search query then perform the search
+		    $students = Student::latest()->where('firstname', 'LIKE', "%{$query}%")
+		                       ->orWhere('surname', 'LIKE', "%{$query}%")
+		                       ->orWhere('email', 'LIKE', "%{$query}%")
+		                       ->orWhere('nationality', 'LIKE', "%{$query}%")
+		                       ->get();
+	    } else {
+	    	// else show all users
+		    $students = Student::with('course')->get();
+	    }
 
 	    return view('view_students', compact('students'));
     }

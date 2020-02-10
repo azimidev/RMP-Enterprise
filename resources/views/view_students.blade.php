@@ -3,7 +3,6 @@
 @section('content')
 	<form action="{{ route('export') }}" method="post" id="student_form">
 		{{ csrf_field() }}
-
 		<div class="header">
 			<div>
 				<img src="/images/logo.png" alt="RMP Logo" title="RMP logo" width="100%">
@@ -14,26 +13,37 @@
 				<input type="submit" value="Export" id="submit"/>
 			</div>
 		</div>
+	</form>
 
-		<div style='margin: 10px; text-align: center;'>
-			<table class="student-table">
-				<tr>
-					<th></th>
-					<th>Forename</th>
-					<th>Surname</th>
-					<th>Email</th>
-					<th>University</th>
-					<th>Course</th>
-				</tr>
+	<form method="GET" style="margin-top: 10px;">
+		<input type="search"
+		       class="form-control"
+		       name="q"
+		       placeholder="Search by first name, surname, email, university and hit enter"
+		       min="3"
+		       value="{{ request('q') }}"
+		       autofocus>
+	</form>
 
-				@if(count($students) > 0 )
-					@foreach($students as $student)
-						<tr>
-							<td><input type="checkbox" class="checkbox" name="studentId[]" value="{{ $student->id }}"></td>
-							<td>{{ $student->firstname }}</td>
-							<td>{{ $student->surname }}</td>
-							<td>{{ $student->email }}</td>
-							<td>{{ isset($student->course->university) ? $student->course->university : 'N/A' }}</td>
+	<div style='margin: 10px; text-align: center;'>
+		<table class="student-table">
+			<tr>
+				<th></th>
+				<th>Forename</th>
+				<th>Surname</th>
+				<th>Email</th>
+				<th>University</th>
+				<th>Course</th>
+			</tr>
+
+			@if(count($students) > 0 )
+				@foreach($students as $student)
+					<tr>
+						<td><input type="checkbox" class="checkbox" name="studentId[]" value="{{ $student->id }}"></td>
+						<td>{{ $student->firstname }}</td>
+						<td>{{ $student->surname }}</td>
+						<td>{{ $student->email }}</td>
+						<td>{{ isset($student->course->university) ? $student->course->university : 'N/A' }}</td>
 							<td>{{ isset($student->course->course_name) ? $student->course->course_name : 'N/A' }}</td>
 						</tr>
 					@endforeach
@@ -44,7 +54,6 @@
 				@endif
 			</table>
 		</div>
-	</form>
 @endsection
 
 @push ('scripts')

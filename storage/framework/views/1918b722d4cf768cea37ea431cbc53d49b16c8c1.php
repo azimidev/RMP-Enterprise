@@ -2,7 +2,6 @@
 	<form action="<?php echo e(route('export')); ?>" method="post" id="student_form">
 		<?php echo e(csrf_field()); ?>
 
-
 		<div class="header">
 			<div>
 				<img src="/images/logo.png" alt="RMP Logo" title="RMP logo" width="100%">
@@ -13,26 +12,37 @@
 				<input type="submit" value="Export" id="submit"/>
 			</div>
 		</div>
+	</form>
 
-		<div style='margin: 10px; text-align: center;'>
-			<table class="student-table">
-				<tr>
-					<th></th>
-					<th>Forename</th>
-					<th>Surname</th>
-					<th>Email</th>
-					<th>University</th>
-					<th>Course</th>
-				</tr>
+	<form method="GET" style="margin-top: 10px;">
+		<input type="search"
+		       class="form-control"
+		       name="q"
+		       placeholder="Search by first name, surname, email, university and hit enter"
+		       min="3"
+		       value="<?php echo e(request('q')); ?>"
+		       autofocus>
+	</form>
 
-				<?php if(count($students) > 0 ): ?>
-					<?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-						<tr>
-							<td><input type="checkbox" class="checkbox" name="studentId[]" value="<?php echo e($student->id); ?>"></td>
-							<td><?php echo e($student->firstname); ?></td>
-							<td><?php echo e($student->surname); ?></td>
-							<td><?php echo e($student->email); ?></td>
-							<td><?php echo e(isset($student->course->university) ? $student->course->university : 'N/A'); ?></td>
+	<div style='margin: 10px; text-align: center;'>
+		<table class="student-table">
+			<tr>
+				<th></th>
+				<th>Forename</th>
+				<th>Surname</th>
+				<th>Email</th>
+				<th>University</th>
+				<th>Course</th>
+			</tr>
+
+			<?php if(count($students) > 0 ): ?>
+				<?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<tr>
+						<td><input type="checkbox" class="checkbox" name="studentId[]" value="<?php echo e($student->id); ?>"></td>
+						<td><?php echo e($student->firstname); ?></td>
+						<td><?php echo e($student->surname); ?></td>
+						<td><?php echo e($student->email); ?></td>
+						<td><?php echo e(isset($student->course->university) ? $student->course->university : 'N/A'); ?></td>
 							<td><?php echo e(isset($student->course->course_name) ? $student->course->course_name : 'N/A'); ?></td>
 						</tr>
 					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -43,7 +53,6 @@
 				<?php endif; ?>
 			</table>
 		</div>
-	</form>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>

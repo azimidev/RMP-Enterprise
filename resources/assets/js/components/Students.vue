@@ -1,7 +1,16 @@
 <template>
 	<div>
+		<h3>Seach here</h3>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<input placeholder="Search student name, surname or email..."
+				       type="search"
+				       class="form-control"
+				       v-model="search"/>
+			</div>
+		</div>
 		<header-component :selected="selected"/>
-		<table-component :selected="selected" :students="students"/>
+		<table-component :selected="selected" :students="filteredStudent"/>
 	</div>
 </template>
 
@@ -14,6 +23,7 @@
 			return {
 				students: students,
 				selected: [],
+				search: '',
 			};
 		},
 		components: {
@@ -32,6 +42,15 @@
 		methods: {
 			selectedStudent(student) {
 				this.selected.push(student);
+			},
+		},
+		computed: {
+			filteredStudent() {
+				return this.students.filter(student => {
+					return student.firstname.toLowerCase().includes(this.search.toLowerCase())
+					  || student.surname.toLowerCase().includes(this.search.toLowerCase())
+					  || student.email.toLowerCase().includes(this.search.toLowerCase());
+				});
 			},
 		},
 	};

@@ -3,8 +3,8 @@
 		<course
 			:course="course"
 			:key="course.id"
-			v-for="course in student.courses"
 			:student="student"
+			v-for="course in student.courses"
 		>
 		</course>
 	</tbody>

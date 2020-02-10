@@ -1917,13 +1917,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       students: students,
-      selected: []
+      selected: [],
+      search: ''
     };
   },
   components: {
@@ -1934,8 +1944,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     eventBus.$on('selectedStudent', function (data) {
-      console.log(data);
-
       if (!data.status) {
         _this.selected.push(data.id);
       } else {
@@ -1943,13 +1951,20 @@ __webpack_require__.r(__webpack_exports__);
           return n === data.id;
         });
       }
-
-      console.log(_this.selected);
     });
   },
   methods: {
     selectedStudent: function selectedStudent(student) {
       this.selected.push(student);
+    }
+  },
+  computed: {
+    filteredStudent: function filteredStudent() {
+      var _this2 = this;
+
+      return this.students.filter(function (student) {
+        return student.firstname.toLowerCase().includes(_this2.search.toLowerCase()) || student.surname.toLowerCase().includes(_this2.search.toLowerCase()) || student.email.toLowerCase().includes(_this2.search.toLowerCase());
+      });
     }
   }
 });
@@ -19829,10 +19844,41 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("h3", [_vm._v("Perform a seach here")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              placeholder: "Search student name, surname or email...",
+              type: "search"
+            },
+            domProps: { value: _vm.search },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
       _c("header-component", { attrs: { selected: _vm.selected } }),
       _vm._v(" "),
       _c("table-component", {
-        attrs: { selected: _vm.selected, students: _vm.students }
+        attrs: { selected: _vm.selected, students: _vm.filteredStudent }
       })
     ],
     1
@@ -32279,7 +32325,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 Vue.component('students', _components_Students_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 window.eventBus = new Vue();
-app = new Vue({
+window.app = new Vue({
   el: '#app'
 });
 
