@@ -56,11 +56,13 @@ class ExportController extends Controller
 	{
 		$students = Student::with('course')->findOrFail($request->studentId)->all();
 
-		// I created a class called Csv to generate a csv file and download it
-		// this class gets all the data as a first parameter
-		// the second parameter is the name of the file
-		// and then automatically get the attributes of the model
-		// and exports (downloads the file)
+		/*
+		 * I created a class called Csv to generate a csv file and download it
+		 * this class gets all the data as a first parameter
+		 * the second parameter is the name of the file
+		 * and then automatically get the attributes of the model
+		 * and exports (downloads the file)
+		 */
 		return (new Csv($students, 'students'))->make();
 	}
 
@@ -71,13 +73,17 @@ class ExportController extends Controller
 	{
 		$courses = Course::withCount('students')->get();
 
-		// It wasn't mentioned where should I use this function
-		// but according to your comment above you want
-		// number of students for all course
+		/*
+		 * It wasn't mentioned where should I use this function
+		 * but according to your comment above you want
+		 * number of students for all course
+		 * */
 
-		// this will export all courses and their fields.
-		// The last number after timestamps in csv file is
-		// number of students for each course
+		/*
+		 * this will export all courses and their fields.
+		 * The last number after timestamps in csv file is
+		 * number of students for each course
+		 * */
 		return (new Csv($courses, 'courses'))->make();
 	}
 
@@ -93,30 +99,10 @@ class ExportController extends Controller
         return view('view_students_vue', compact('students'));
     }
 
-    /**
-     * Exports all student data to a CSV file
+    /*
+     * Note:
+     * I removed both exportStudentsToCsvWithVue and used export
+     * Also, I removed both exportCourseAttendenceToCSV and used exportCourseAttendenceToCSV
+     * for both Laravel task and Vue with api task
      */
-    public function exportStudentsToCsvWithVue()
-    {
-	    $students = Student::with('course')->findOrFail(request('students'))->all();
-
-	    return (new Csv($students, 'students'))->make();
-    }
-
-    /**
-     * Exports the total amount of students that are taking each course to a CSV file
-     */
-    public function exportCourseAttendenceToCsvWithVue()
-    {
-	    $courses = Course::withCount('students')->get();
-
-	    // According to your comment above you want
-	    // number of students for all course
-
-	    // this will export all courses and their fields
-	    // the last number after timestamps in csv file is
-	    // number of students for each course
-	    // assune the ones with no number is 0
-	    return (new Csv($courses, 'courses'))->make();
-    }
 }

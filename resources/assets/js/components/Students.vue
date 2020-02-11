@@ -1,14 +1,15 @@
 <template>
 	<div>
-		<header-component :selected="selected"/>
-		<div class="row" style="margin-top: 10px;">
-			<div class="col-md-6 col-md-offset-3">
+		<div><img alt="Logo" src="/images/logo_sm.jpg" title="logo"></div>
+		<div class="row">
+			<div class="col-md-4">
 				<input placeholder="Search student name, surname or email..."
 				       type="search"
 				       class="form-control"
 				       v-model="search"/>
 			</div>
 		</div>
+		<header-component :selected="selected"/>
 		<table-component :selected="selected" :students="filteredStudent"/>
 	</div>
 </template>

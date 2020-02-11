@@ -9,13 +9,16 @@
 - **For exporting the course attendence I assume you wanted to see number of students attending to every course for all parts**. Therefore When user clicks on Export Course Attendance there will be a CSV file with all courses details and the last column will be the number of students attending to each course.
 - Route `View` didn't have _Export Course Attendance_ button which I added it along with another route called `export.course.attendance` to implement exporting the course attendance functionality.
 - There are some comments along side with code to explain what I did.
+- I removed `exportStudentsToCsvWithVue` and `exportCourseAttendenceToCsvWithVue` as controller is busy, and in `route/api` and in `route/web` I use similar methids for Vue and for Laravel to export CSV for both students and courses.
+- I generated a string and append that with http headers to generate a CSV file download.
+- I used different technique for downloading the CSV file in JavaScript which can be seen in `save()` function in `Header.Vue` component. 
 
 ## What I could have done differently
 
-- I would extract the Vue search into component
-- Write more tests
-- Optimize the sass files
-- Please note I am aware that `exportCourseAttendenceToCSV` and `exportCourseAttendenceToCsvWithVue` are similar and they can definitely be refactored into one method and only one route because `Csv` object it returns similar response in both case of AJAX call or without AJAX call.
+- I would extract the Vue search into component.
+- I would Write more tests.
+- Optimize the sass files.
+- I would use different controllers for export and better naming for example `index`, `store` for students and `index`, `store` for course attendance.
 
 ---
 

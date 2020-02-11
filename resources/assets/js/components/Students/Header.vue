@@ -1,9 +1,11 @@
 <template>
 	<div class="header">
-		<div><img alt="Logo" src="/images/logo_sm.jpg" title="logo"></div>
-		<div style='margin: 10px;  text-align: left'>
-			<input :value="selectText" @click="toggleSelection()" :class="['btn', selectAll ? 'btn-success' : 'btn-danger']" type="button"/>
-			<input @click="exportStudents()" type="button" class="btn btn-primary" value="Export Students"/>
+		<div style='margin: 10px 0;'>
+			<input :class="['btn', selectAll ? 'btn-success' : 'btn-danger']"
+			       :value="selectText"
+			       @click="toggleSelection()"
+			       type="button"/>
+			<input @click="exportStudents()" class="btn btn-primary" type="button" value="Export Students"/>
 			<input @click="exportCourseAttendance()" class="btn btn-info" type="button" value="Export Course Attendance"/>
 		</div>
 	</div>
@@ -36,16 +38,18 @@
 					}, () => {
 						// use Axios instead of redundant Vue resources package
 						axios.post('/api/export/students', {
-							students: this.selected,
+							studentId: this.selected,
 							all: false,
 							api_token: Laravel.api_token, // --> we need to pass this as you use auth:api
 						}).then(({ data }) => {
-							// here we're get a response from Csv object in the server
-							// because response will return a csv string and because
-							// it's asyn response, i created a methid called save
-							// that will download the response into a csv blob
-							// it gets the data which is returned from the server
-							// and file name as string and it will try to save it
+							/*
+							here we're get a response from Csv object in the server
+							because response will return a csv string and because
+							it's asyn response, i created a methid called save
+							that will download the response into a csv blob
+							it gets the data which is returned from the server
+							and file name as string and it will try to save it
+							*/
 							this.save(data, 'students.csv');
 							swal.close();
 						}, (response) => {

@@ -1,4 +1,4 @@
-window._ = require('lodash');
+window._     = require('lodash');
 window.Vue   = require('vue');
 window.axios = require('axios');
 
@@ -10,7 +10,5 @@ Vue.component('students', Students);
 
 window.eventBus = new Vue();
 
-window.app = new Vue({
-	el: '#app',
-});
+window.app = new Vue({ el: '#app' });
 

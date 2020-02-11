@@ -1925,6 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2039,7 +2040,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['selected'],
   data: function data() {
@@ -2069,7 +2069,7 @@ __webpack_require__.r(__webpack_exports__);
         }, function () {
           // use Axios instead of redundant Vue resources package
           axios.post('/api/export/students', {
-            students: _this.selected,
+            studentId: _this.selected,
             all: false,
             api_token: Laravel.api_token // --> we need to pass this as you use auth:api
 
@@ -19837,10 +19837,10 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("header-component", { attrs: { selected: _vm.selected } }),
+      _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "row", staticStyle: { "margin-top": "10px" } }, [
-        _c("div", { staticClass: "col-md-6 col-md-offset-3" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
           _c("input", {
             directives: [
               {
@@ -19868,6 +19868,8 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
+      _c("header-component", { attrs: { selected: _vm.selected } }),
+      _vm._v(" "),
       _c("table-component", {
         attrs: { selected: _vm.selected, students: _vm.filteredStudent }
       })
@@ -19875,7 +19877,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("img", {
+        attrs: { alt: "Logo", src: "/images/logo_sm.jpg", title: "logo" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -19983,9 +19996,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "header" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticStyle: { margin: "10px", "text-align": "left" } }, [
+    _c("div", { staticStyle: { margin: "10px 0" } }, [
       _c("input", {
         class: ["btn", _vm.selectAll ? "btn-success" : "btn-danger"],
         attrs: { value: _vm.selectText, type: "button" },
@@ -20018,18 +20029,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("img", {
-        attrs: { alt: "Logo", src: "/images/logo_sm.jpg", title: "logo" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -7,7 +7,6 @@
 
 		<input type="submit" class="btn btn-info" value="Export Course Attendance" id="submit"/>
 	</form>
-	<h5>Search here</h5>
 	<div class="row" style="margin-bottom: 10px;">
 		<div class="col-md-6 col-md-offset-3">
 			<form method="GET" style="margin-top: 10px;">
