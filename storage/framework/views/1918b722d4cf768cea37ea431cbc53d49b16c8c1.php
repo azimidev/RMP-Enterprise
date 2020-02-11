@@ -27,15 +27,15 @@
 
 		<input type="button" class="btn btn-success" value="Select All" id="select_all"/>
 		<input type="submit" class="btn btn-primary" value="Export Students" id="submit"/>
-
+		<br><small class="text-primary">Note: click on each column header to sort based on that column.</small>
 		<div style='margin: 10px; text-align: center;'>
-			<table class="student-table">
+			<table class="table table-condensed student-table">
 				<tr>
 					<th></th>
-					<th>Forename</th>
-					<th>Surname</th>
-					<th>Email</th>
-					<th>University</th>
+					<th><?php echo sort_column_by('firstname', 'Forename'); ?></th>
+					<th><?php echo sort_column_by('surname', 'Surname'); ?></th>
+					<th><?php echo sort_column_by('email', 'Email'); ?></th>
+					<th><?php echo sort_column_by('university', 'University'); ?></th>
 					<th>Course</th>
 				</tr>
 

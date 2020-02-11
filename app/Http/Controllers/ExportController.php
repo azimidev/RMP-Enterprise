@@ -31,7 +31,14 @@ class ExportController extends Controller
      */
     public function viewStudents()
     {
-	    if ($query = request('q')) {
+	    $sortBy    = request()->get('sortBy');
+	    $direction = request()->get('direction');
+	    $query     = request('q');
+	    $params    = compact('sortBy', 'direction');
+
+	    if ($sortBy && $direction) {
+		    $students = Student::orderBy($params['sortBy'], $params['direction'])->get();
+	    } elseif ($query) {
 		    // if request has a search query then perform the search
 		    $students = Student::latest()->where('firstname', 'LIKE', "%{$query}%")
 		                       ->orWhere('surname', 'LIKE', "%{$query}%")
@@ -39,7 +46,7 @@ class ExportController extends Controller
 		                       ->orWhere('nationality', 'LIKE', "%{$query}%")
 		                       ->get();
 	    } else {
-	    	// else show all users
+		    // else show all users
 		    $students = Student::with('course')->get();
 	    }
 

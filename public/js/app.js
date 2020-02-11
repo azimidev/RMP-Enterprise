@@ -2040,6 +2040,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['selected'],
   data: function data() {
@@ -2076,12 +2079,14 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function (_ref) {
             var data = _ref.data;
 
-            // here we're get a response from Csv object in the server
-            // because response will return a csv string and because
-            // it's asyn response, i created a methid called save
-            // that will download the response into a csv blob
-            // it gets the data which is returned from the server
-            // and file name as string and it will try to save it
+            /*
+            here we're get a response from Csv object in the server
+            because response will return a csv string and because
+            it's asyn response, i created a methid called save
+            that will download the response into a csv blob
+            it gets the data which is returned from the server
+            and file name as string and it will try to save it
+            */
             _this.save(data, 'students.csv');
 
             swal.close();

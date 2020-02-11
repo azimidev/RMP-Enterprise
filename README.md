@@ -5,6 +5,7 @@
 - I updated the packages including Lravel-Mix since the old one wasn't compatible with my version of Yarn.
 - I wrote unit tests and some feature tests.
 - I created the search functionality for both Vue and Laravel.
+- I created sorting column functionality for route `view` but the concept is the same for Vue.
 - I fixed all deliberate errors or bugs.
 - **For exporting the course attendence I assume you wanted to see number of students attending to every course for all parts**. Therefore When user clicks on Export Course Attendance there will be a CSV file with all courses details and the last column will be the number of students attending to each course.
 - Route `View` didn't have _Export Course Attendance_ button which I added it along with another route called `export.course.attendance` to implement exporting the course attendance functionality.
@@ -19,6 +20,7 @@
 - I would Write more tests.
 - Optimize the sass files.
 - I would use different controllers for export and better naming for example `index`, `store` for students and `index`, `store` for course attendance.
+- I didn't do history task as I did not understand what do you mean by that and also, I didn't do handling 200K+ students to export.
 
 ---
 
