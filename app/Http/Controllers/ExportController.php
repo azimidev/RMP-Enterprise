@@ -83,21 +83,21 @@ class ExportController extends Controller
 		/*
 		 * It wasn't mentioned where should I use this function
 		 * but according to your comment above you want
-		 * number of students for all course
-		 * */
+		 * the number of students for all courses.
+		 */
 
 		/*
 		 * this will export all courses and their fields.
 		 * The last number after timestamps in csv file is
-		 * number of students for each course
-		 * */
+		 * the number of students for each course.
+		 */
 		return (new Csv($courses, 'courses'))->make();
 	}
 
 	/** Optional **/
 
     /**
-     * View all students found in the database
+     * View all students found in the database.
      */
     public function viewStudentsWithVue()
     {
